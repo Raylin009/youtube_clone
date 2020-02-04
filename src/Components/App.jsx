@@ -1,8 +1,9 @@
 import React from 'react';
+import PlayGround from './PlayGround.jsx';
 
 const App = () => (
   <div>
-    <h1>Dev Enviroment Setup Complete</h1>
+    <PlayGround />
   </div>
 );
 
