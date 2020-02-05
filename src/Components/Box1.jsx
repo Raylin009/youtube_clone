@@ -1,13 +1,22 @@
-import React from 'react';
-import {useSpring, animated} from 'react-spring'
+import React, { useState } from 'react';
+import {useSpring, animated, config} from 'react-spring'
 
-const Box1 = ({ id }) => {
-  const props = useSpring({opacity: 1, from: {opacity: 0}});
+const Box1 = ({ id, mod, reverse, onComplete}) => {
+  const props = useSpring({opacity: 1, from: {opacity: 0}, config: mod});
+  const grow = useSpring({
+    width: 400, 
+    from: {width: 200}, 
+    config: config[mod],
+    reset: true,
+    reverse,
+  })
   
   return (
-    <div className={`box-${id}`} style={props}>
-      <animated.h2 style={{...props, textAlign: 'center'}} >Just Words</animated.h2>
-    </div>
+    <animated.div className={`box box-${id}`} style={grow}>
+      <h2 style={{ textAlign: 'center'}} >
+        {mod}
+      </h2>
+    </animated.div>
   )
 };
 
