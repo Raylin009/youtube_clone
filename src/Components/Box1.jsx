@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {useSpring, animated, config} from 'react-spring'
 
-const Box1 = ({ id, mod, reverse, onComplete}) => {
+const Box1 = ({ id, mod, reverse, onRest}) => {
   const props = useSpring({opacity: 1, from: {opacity: 0}, config: mod});
   const grow = useSpring({
     width: 400, 
@@ -9,6 +9,7 @@ const Box1 = ({ id, mod, reverse, onComplete}) => {
     config: config[mod],
     reset: true,
     reverse,
+    onRest,
   })
   
   return (
