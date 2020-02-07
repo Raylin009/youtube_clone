@@ -1,22 +1,21 @@
 import React, { useState } from 'react';
-import {useSpring, animated, config} from 'react-spring'
+import { animated } from 'react-spring';
 
-const Box1 = ({ id, mod, reverse}) => {
-  const props = useSpring({opacity: 1, from: {opacity: 0}, config: mod});
-  const grow = useSpring({
-    width: 400, 
-    from: {width: 200}, 
-    config: config[mod],
-    reset: true,
-    reverse,
-  })
-  
+const Box1 = ({ styles=[{}]}) => {
+  const [on, toggle] = useState(false);
+  const handleToggle = () => {toggle(!on)
+  console.log(on)};
+
   return (
-    <animated.div className={`box box-${id}`} style={grow}>
-      <h2 style={{ textAlign: 'center'}} >
-        {mod}
-      </h2>
-    </animated.div>
+    <div className={'box'}>
+      <div className={'inner-box'}>
+        <div className={'animation-portal'}>
+          {console.log(styles)}
+          {styles.map((item, key)=> <animated.h1 style={item(on)} key={key}>Hello World</animated.h1>)}
+        </div>
+        <button onClick={handleToggle}>Animate Motion</button>
+      </div>
+    </div>
   )
 };
 
